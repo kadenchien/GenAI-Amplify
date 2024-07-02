@@ -1,0 +1,64 @@
+/* src/Sidebar.css */
+.sidebar {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px;
+    background: #faf9f9;
+  }
+  
+  .chat-history {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .chat-history h2 {
+    margin-top: 0;
+  }
+  
+  .chat-history ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .chat-history li {
+    padding: 10px;
+    margin: 5px 0;
+    background: #f1f1f1;
+    border-radius: 5px;
+    align-items: center;
+  }
+  
+  .login {
+    padding: 10px 0;
+  }
+  
+  .login h2 {
+    margin-bottom: 10px;
+  }
+  
+  .login input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .login button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .login button:hover {
+    background-color: #45a049;
+  }
