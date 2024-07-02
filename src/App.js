@@ -16,7 +16,8 @@ import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';
 
 // Imports the Quiz component from Quiz.js for use in this file.
-import ChatPage from './ChatPage'
+import ChatWindow from './ChatWindow'
+import Sidebar from './Sidebar'
 
 // Configures the Amplify library with the settings from aws-exports.js, which includes all the AWS service configurations for this project.
 Amplify.configure(awsExports);
@@ -26,24 +27,21 @@ function App() {
     <div className="App">
       <Authenticator>
         {({ signOut }) => (
-          <main>
-            <header className='App-header'>
-              {/* Chat Page Component */}
-              <ChatPage />
-              {/* Sign Out Button */}
-              <button 
-                onClick={signOut} 
-                style={{ 
-                  margin: '20px', 
-                  fontSize: '0.8rem', 
-                  padding: '5px 10px', 
-                  marginTop: '20px'
-                }}
-              >
-                Sign Out
-              </button>
-            </header>
-          </main>
+          <>
+            {/* Sidebar and Chat Window */}
+            <div className="main-content">
+              <Sidebar />
+              <ChatWindow />
+            </div>
+
+            {/* Sign Out Button */}
+            <button
+              className="sign-out-button"
+              onClick={signOut}
+            >
+              Sign Out
+            </button>
+          </>
         )}
       </Authenticator>
     </div>
