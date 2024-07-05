@@ -2,21 +2,24 @@
 import React, { useState } from 'react';
 import './ChatWindow.css';
 import Dropdown from './DropDown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-regular-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const ChatWindow = () => {
   const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Jurassic', 'LLaMA-3'];
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [clickedIndex, setClickedIndex] = useState(null);
 
   const handleSend = () => {
     if (input.trim()) {
-      setMessages([...messages, { text: input, user: 'me' }]);
+      const newMessage = { text: input, user: 'me' };
+      setMessages([...messages, newMessage]);
       setInput('');
-      // Here you can add the code to send the input to the backend and get the response
-      // For now, we'll just echo the input as a bot response
       setTimeout(() => {
-        setMessages([...messages, { text: input, user: 'me' }, { text: `Echo: ${input}`, user: 'bot' }]);
+        setMessages(prevMessages => [...prevMessages, { text: `Echo: ${input}`, user: 'bot' }]);
       }, 500);
     }
   };
@@ -25,15 +28,29 @@ const ChatWindow = () => {
     setSelectedOption(option);
   };
 
+  const copyToClipboard = (text, index) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setClickedIndex(index);
+      setTimeout(() => {
+        setClickedIndex(null);
+      }, 500);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  };
+
   return (
     <div className="chat-window">
-      <div className = "select-model">
+      <div className="select-model">
         <Dropdown options={options} onSelect={handleSelect} />
       </div>
       <div className="messages">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.user}`}>
             {msg.text}
+            <button onClick={() => copyToClipboard(msg.text, index)} className="copy-button">
+              {clickedIndex === index ? <FontAwesomeIcon icon={faCheckCircle} /> : <FontAwesomeIcon icon={faCopy} />}
+            </button>
           </div>
         ))}
       </div>
