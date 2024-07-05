@@ -1,100 +1,125 @@
-/* src/ChatWindow.css */
 body, html, #root, .App {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .App {
-    display: flex;
-    justify-content: flex-end;
-    align-items: stretch;
-    height: 100%;
-  }
-  
-  .chat-window {
-      width: 85%;
-      height: 100%;
-      border-radius: 5px;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-    }
-    
-    .messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* Center the messages horizontally */
-      margin: 0 auto; /* Center the messages container */
-    }
-    
-    .message {
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
-      max-width: 70%;
-      word-wrap: break-word; /* Ensure text wraps within the message box */
-      word-break: break-word; /* Ensure long words break and wrap within the message box */
-    }
-    
-    .message.me {
-      align-self: flex-end;
-      background-color: #daf1da;
-    }
-    
-    .message.bot {
-      align-self: flex-start;
-      background-color: #f1f1f1;
-    }
-    
-    .input-area {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-    }
-    
-    .input {
-      background-color: #f5f5f5;
-      color: #242424;
-      padding: .15rem .5rem;
-      min-height: 40px;
-      border-radius: 50px;
-      outline: none;
-      border: none;
-      line-height: 1.15;
-      box-shadow: 0px 10px 20px -18px;
-      width: 50%;
-    }
-    
-    .input:focus {
-      border-bottom: 2px solid #5b5fc7;
-      border-radius: 50px;
-    }
-    
-    .input:hover {
-      outline: 1px solid lightgrey;
-    }
-    
-    .input-area button {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #4caf50;
-      color: white;
-      cursor: pointer;
-    }
-    
-    .input-area button:hover {
-      background-color: #45a049;
-    }
-  
-    .select-model {
-      padding-top: 10px;
-      padding-left: 20px;
-    }
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  height: 100%;
+}
+
+.chat-window {
+  width: 85%;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.message {
+  padding: 10px;
+  margin: 5px 0 20px;
+  border-radius: 5px;
+  max-width: 70%;
+  word-wrap: break-word;
+  word-break: break-word;
+  position: relative;
+  background-color: #f1f1f1;
+}
+
+.message.me {
+  align-self: flex-end;
+  background-color: #daf1da;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+}
+
+.input-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.input {
+  background-color: #f5f5f5;
+  color: #242424;
+  padding: .15rem .5rem;
+  min-height: 40px;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  line-height: 1.15;
+  box-shadow: 0px 10px 20px -18px;
+  width: 50%;
+}
+
+.input:focus {
+  border-bottom: 2px solid #5b5fc7;
+  border-radius: 50px;
+}
+
+.input:hover {
+  outline: 1px solid lightgrey;
+}
+
+.input-area button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.input-area button:hover {
+  background-color: #45a049;
+}
+
+.select-model {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.copy-button {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 4px 6px;
+  font-size: 14px;
+  background-color: #000000;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  border-radius: 5px;
+}
+
+.message:hover .copy-button {
+  opacity: 1;
+  visibility: visible;
+}
