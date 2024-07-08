@@ -7,7 +7,7 @@ import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const ChatWindow = () => {
-  const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Jurassic', 'LLaMA-3'];
+  const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Claude', 'LLaMA-3'];
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [selectedOption, setSelectedOption] = useState(options[0]);

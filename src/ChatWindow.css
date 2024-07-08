@@ -43,11 +43,13 @@ body, html, #root, .App {
     
     .message.me {
       align-self: flex-end;
+      text-align: right;
       background-color: #daf1da;
     }
     
     .message.bot {
       align-self: flex-start;
+      text-align: left;
       background-color: #f1f1f1;
     }
     
