@@ -20,12 +20,16 @@ const DropDown = ({ options, onSelect }) => {
       </div>
       {isOpen && (
         <ul className="dropdown-list">
-          {options.map((option, index) => (
-            <li key={index} onClick={() => handleSelect(option)}>
-                <img src={`../public/${index + 1}`} className="dropdown-image" />
-              {option}
-            </li>
-          ))}
+           {options.map((option, index) => {
+                const imgSrc = `/images/${index + 1}.png`;
+                console.log(imgSrc); // Log the image path
+                return (
+                <li key={index} onClick={() => handleSelect(option)}>
+                    <img src={imgSrc} className="dropdown-image"/>
+                    {option}
+                </li>
+                );
+            })}
         </ul>
       )}
     </div>
