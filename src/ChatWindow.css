@@ -21,16 +21,30 @@ body, html, #root, .App {
   box-sizing: border-box;
 }
 
+.select-model {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .messages {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
-  width: 50%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  max-height: 1000px; 
 }
+
 
 .message {
   padding: 10px;
@@ -93,11 +107,6 @@ body, html, #root, .App {
 
 .input-area button:hover {
   background-color: #45a049;
-}
-
-.select-model {
-  padding-top: 10px;
-  padding-left: 20px;
 }
 
 .copy-button {
