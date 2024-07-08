@@ -1,4 +1,3 @@
-/* src/ChatWindow.css */
 body, html, #root, .App {
     height: 100%;
     margin: 0;
@@ -44,7 +43,7 @@ body, html, #root, .App {
     
     .message.me {
       align-self: flex-end;
-      background-color: #dadef1;
+      background-color: #daf1da;
     }
     
     .message.bot {
@@ -63,8 +62,7 @@ body, html, #root, .App {
       background-color: #f5f5f5;
       color: #242424;
       padding: .15rem .5rem;
-      padding-left: 20px;
-      min-height: 50px;
+      min-height: 40px;
       border-radius: 50px;
       outline: none;
       border: none;
@@ -86,13 +84,13 @@ body, html, #root, .App {
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      background-color: #4c5caf;
+      background-color: #4caf50;
       color: white;
       cursor: pointer;
     }
     
     .input-area button:hover {
-      background-color: #1f24a6;
+      background-color: #45a049;
     }
   
     .select-model {
