@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
-
 const ChatWindow = () => {
   const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Jurassic', 'LLaMA-3'];
   const [messages, setMessages] = useState([]);
@@ -45,17 +44,18 @@ const ChatWindow = () => {
       <div className="select-model">
         <Dropdown options={options} onSelect={handleSelect} />
       </div>
-      <div className="messages">
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.user}`}>
-            {msg.text}
-            <button onClick={() => copyToClipboard(msg.text, index)} className="copy-button">
-              {clickedIndex === index ? <FontAwesomeIcon icon={faCheckCircle} /> : <FontAwesomeIcon icon={faCopy} />}
-            </button>
-          </div>
-        ))}
+      <div className="messages-container">
+        <div className="messages">
+          {messages.map((msg, index) => (
+            <div key={index} className={`message ${msg.user}`}>
+              {msg.text}
+              <button onClick={() => copyToClipboard(msg.text, index)} className="copy-button">
+                {clickedIndex === index ? <FontAwesomeIcon icon={faCheckCircle} /> : <FontAwesomeIcon icon={faCopy} />}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-      
       <div className="input-area">
         <input 
           className="input" 
