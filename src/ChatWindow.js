@@ -7,7 +7,7 @@ import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const ChatWindow = () => {
-  const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Jurassic', 'LLaMA-3'];
+  const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Claude', 'LLaMA-3'];
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -40,10 +40,11 @@ const ChatWindow = () => {
   };
 
   return (
-    <div className="chat-window">
-      <div className="select-model">
+    <>
+    <div className="select-model">
         <Dropdown options={options} onSelect={handleSelect} />
-      </div>
+    </div>
+    <div className="chat-window">
       <div className="messages-container">
         <div className="messages">
           {messages.map((msg, index) => (
@@ -68,6 +69,7 @@ const ChatWindow = () => {
         <button onClick={handleSend}>Send</button>
       </div>
     </div>
+    </>
   );
 };
 
