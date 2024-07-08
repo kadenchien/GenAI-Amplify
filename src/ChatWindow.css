@@ -1,129 +1,138 @@
 body, html, #root, .App {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+ .App {
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  height: 100%;
+}
+ .chat-window {
+    width: 85%;
     height: 100%;
-    margin: 0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .select-model {
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+ 
+  .messages-container {
+    flex: 1;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
   }
-  
-  .App {
+ 
+  .messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 90%;
     display: flex;
-    justify-content: flex-end;
-    align-items: stretch;
-    height: 100%;
+    flex-direction: column;
+    align-items: center; /* Center the messages horizontally */
+    margin: 0 auto; /* Center the messages container */
+    max-height: 95vh;
   }
-  
-  .chat-window {
-      width: 85%;
-      height: 100%;
-      border-radius: 5px;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-    }
-    
-    .messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto; /* Enable vertical scrolling */
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* Center the messages horizontally */
-      margin: 0 auto; /* Center the messages container */
-    }
-    
-    .message {
-      padding: 10px;
-      margin: 5px 0;
-      margin-bottom: 30px;
-      border-radius: 5px;
-      max-width: 85%;
-      word-wrap: break-word; /* Ensure text wraps within the message box */
-      word-break: break-word; /* Ensure long words break and wrap within the message box */
-      position: relative;
-      background-color: #f1f1f1;
-    }
-    
-    .message.me {
-      align-self: flex-end;
-      text-align: right;
-      background-color: #dadcf1;
-    }
-    
-    .message.bot {
-      align-self: flex-start;
-      text-align: left;
-      background-color: #f1f1f1;
-    }
-    
-    .input-area {
+ 
+  .message {
+    padding: 10px;
+    margin: 5px 0;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word; /* Ensure text wraps within the message box */
+    word-break: break-word; /* Ensure long words break and wrap within the message box */
+    position: relative;
+    background-color: #f1f1f1;
+  }
+ 
+  .message.me {
+    align-self: flex-end;
+    text-align: right;
+    background-color: #dadcf1;
+  }
+ 
+  .message.bot {
+    align-self: flex-start;
+    text-align: left;
+    background-color: #f1f1f1;
+  }
+ 
+  .input-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+ 
+  .input {
+    background-color: #f5f5f5;
+    color: #242424;
+    padding: .15rem .5rem;
+    padding-left: 20px;
+    min-height: 50px;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    box-shadow: 0px 10px 20px -18px;
+    width: 50%;
+  }
+ 
+  .input:focus {
+    border-bottom: 2px solid #5b5fc7;
+    border-radius: 50px;
+  }
+ 
+  .input:hover {
+    outline: 1px solid lightgrey;
+  }
+ 
+  .input-area button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #4c5caf;
+    color: white;
+    cursor: pointer;
+  }
+ 
+  .input-area button:hover {
+    background-color: #1f24a6;
+  }
+
+
+  .copy-button {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 4px 6px;
+      font-size: 14px;
+      background-color: #000000;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
-    }
-    
-    .input {
-      background-color: #f5f5f5;
-      color: #242424;
-      padding: .15rem .5rem;
-      padding-left: 20px;
-      min-height: 50px;
-      border-radius: 50px;
-      outline: none;
-      border: none;
-      line-height: 1.15;
-      box-shadow: 0px 10px 20px -18px;
-      width: 50%;
-    }
-    
-    .input:focus {
-      border-bottom: 2px solid #5b5fc7;
-      border-radius: 50px;
-    }
-    
-    .input:hover {
-      outline: 1px solid lightgrey;
-    }
-    
-    .input-area button {
-      padding: 10px;
-      border: 1px solid #ccc;
+      position: absolute;
+      bottom: -10px;
+      right: 0;
       border-radius: 5px;
-      background-color: #4c5caf;
-      color: white;
-      cursor: pointer;
     }
-    
-    .input-area button:hover {
-      background-color: #1f24a6;
-    }
-  
-    .select-model {
-      padding-top: 10px;
-      padding-left: 20px;
+   
+    .message:hover .copy-button {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .copy-button {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-        padding: 4px 6px;
-        font-size: 14px;
-        background-color: #000000;
-        border: none;
-        color: #ffffff;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        bottom: -10px;
-        right: 0;
-        border-radius: 5px;
-      }
-      
-      .message:hover .copy-button {
-        opacity: 1;
-        visibility: visible;
-      }
+
+

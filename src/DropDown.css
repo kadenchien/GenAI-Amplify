@@ -4,6 +4,7 @@
     width: 200px;
     position: relative;
     user-select: none;
+    z-index: 1000;
   }
   
   .dropdown-header {
