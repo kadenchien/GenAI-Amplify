@@ -24,7 +24,7 @@ body, html, #root, .App {
     .messages {
       flex: 1;
       padding: 10px;
-      overflow-y: auto;
+      overflow-y: auto; /* Enable vertical scrolling */
       width: 50%;
       display: flex;
       flex-direction: column;
@@ -35,16 +35,19 @@ body, html, #root, .App {
     .message {
       padding: 10px;
       margin: 5px 0;
+      margin-bottom: 30px;
       border-radius: 5px;
-      max-width: 70%;
+      max-width: 85%;
       word-wrap: break-word; /* Ensure text wraps within the message box */
       word-break: break-word; /* Ensure long words break and wrap within the message box */
+      position: relative;
+      background-color: #f1f1f1;
     }
     
     .message.me {
       align-self: flex-end;
       text-align: right;
-      background-color: #daf1da;
+      background-color: #dadcf1;
     }
     
     .message.bot {
@@ -64,7 +67,8 @@ body, html, #root, .App {
       background-color: #f5f5f5;
       color: #242424;
       padding: .15rem .5rem;
-      min-height: 40px;
+      padding-left: 20px;
+      min-height: 50px;
       border-radius: 50px;
       outline: none;
       border: none;
@@ -86,16 +90,40 @@ body, html, #root, .App {
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      background-color: #4caf50;
+      background-color: #4c5caf;
       color: white;
       cursor: pointer;
     }
     
     .input-area button:hover {
-      background-color: #45a049;
+      background-color: #1f24a6;
     }
   
     .select-model {
       padding-top: 10px;
       padding-left: 20px;
     }
+
+    .copy-button {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        padding: 4px 6px;
+        font-size: 14px;
+        background-color: #000000;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: -10px;
+        right: 0;
+        border-radius: 5px;
+      }
+      
+      .message:hover .copy-button {
+        opacity: 1;
+        visibility: visible;
+      }
