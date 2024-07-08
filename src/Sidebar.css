@@ -1,64 +1,55 @@
 /* src/Sidebar.css */
 .sidebar {
-    width: 15%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    padding: 10px;
-    background: #faf9f9;
-  }
-  
-  .chat-history {
-    flex: 1;
-    overflow-y: auto;
-  }
-  
-  .chat-history h2 {
-    margin-top: 0;
-  }
-  
-  .chat-history ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .chat-history li {
-    padding: 10px;
-    margin: 5px 0;
-    background: #f1f1f1;
-    border-radius: 5px;
-    align-items: center;
-  }
-  
-  .login {
-    padding: 10px 0;
-  }
-  
-  .login h2 {
-    margin-bottom: 10px;
-  }
-  
-  .login input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .login button {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .login button:hover {
-    background-color: #45a049;
-  }
+  width: 250px; /* Adjusted width for visibility */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10px;
+  background: #faf9f9;
+  transition: width 0.3s ease, padding 0.3s ease; /* Smooth transition for width and padding */
+  position: relative; /* Needed for absolute positioning of the toggle button */
+}
+
+.sidebar.collapsed {
+  width: 30px; /* Minimal width to keep toggle visible */
+  padding: 10px 0 10px 0; /* Adjusted padding */
+}
+
+.toggle-button {
+  position: absolute; /* Position it absolutely relative to its nearest positioned ancestor */
+  top: 10px; /* Distance from the top */
+  left: 0; /* Stick to the left side */
+  z-index: 100; /* Ensure it's above other elements */
+  background-color: #ddd; /* Background color for visibility */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  width: 30px; /* Set a specific width */
+  height: 30px; /* Set a specific height */
+}
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chat-history h2 {
+  white-space: nowrap; /* Prevent wrapping of text in narrow sidebar */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis when text is too long */
+}
+
+.chat-history ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.chat-history li {
+  padding: 10px;
+  margin: 5px 0;
+  background: #f1f1f1;
+  border-radius: 5px;
+  align-items: center;
+}
