@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 // Imports the Amplify library from 'aws-amplify' package. This is used to configure your app to interact with AWS services.
 import {Amplify} from 'aws-amplify';
