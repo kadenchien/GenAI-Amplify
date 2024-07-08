@@ -31,34 +31,20 @@
     border-radius: 5px;
     align-items: center;
   }
-  
-  .login {
-    padding: 10px 0;
-  }
-  
-  .login h2 {
-    margin-bottom: 10px;
-  }
-  
-  .login input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .login button {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #4caf50;
+
+.sign-out-button {
+    bottom: 10px;
+    left: 10px;
+    padding: 8px 16px;
+    background-color: #4c5caf;
     color: white;
+    border: none;
     cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    min-height: 50px;
   }
-  
-  .login button:hover {
-    background-color: #45a049;
+
+  .sign-out-button:hover {
+    background-color: #1f24a6;
   }

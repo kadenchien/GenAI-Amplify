@@ -30,17 +30,9 @@ function App() {
           <>
             {/* Sidebar and Chat Window */}
             <div className="main-content">
-              <Sidebar />
+              <Sidebar signOut = {signOut}/>
               <ChatWindow />
             </div>
-
-            {/* Sign Out Button */}
-            <button
-              className="sign-out-button"
-              onClick={signOut}
-            >
-              Sign Out
-            </button>
           </>
         )}
       </Authenticator>
