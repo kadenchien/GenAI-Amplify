@@ -5,28 +5,69 @@ import Dropdown from './DropDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { post } from 'aws-amplify/api';
+import { Amplify } from 'aws-amplify';
 
+console.log('API Config:', Amplify.getConfig().API);
+ 
 const ChatWindow = () => {
   const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Claude', 'LLaMA-3'];
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]); 
   const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [clickedIndex, setClickedIndex] = useState(null);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (input.trim()) {
-      const newMessage = { text: input, user: 'me' };
-      setMessages([...messages, newMessage]);
-      setInput('');
-      setTimeout(() => {
-        setMessages(prevMessages => [...prevMessages, { text: `Echo: ${input}`, user: 'bot' }]);
-      }, 500);
-    }
-  };
+        const newMessage = { text: input, user: 'me' };
+        setMessages([...messages, newMessage]);
+        setInput('');
+        setIsLoading(true);
+    
+        try {
+          const response = await post({
+            apiName: 'mistralapi',
+            path: '/mistral-router',
+            options: {
+              body: { "prompt": input }
+            }
+          });
 
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-  };
+
+        console.log('Raw response:', response);
+
+        const res = await response.response;
+
+        console.log('Resolved response:', res);
+
+        let botResponseText = '';
+
+      if (res.body && typeof res.body.text === 'function') {
+        try {
+          // Read the response body as text
+          botResponseText = await res.body.text();
+        } catch (e) {
+          console.error('Error reading response body:', e);
+        }
+      }
+
+      console.log('Processed botResponse:', botResponseText);
+
+      setMessages(prevMessages => [...prevMessages, { text: botResponseText, user: 'bot' }]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      console.error('Error details:', JSON.stringify(error, null, 2));
+      setMessages(prevMessages => [...prevMessages, { text: "Sorry, there was an error processing your request.", user: 'bot' }]);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+};
+
+    const handleSelect = (option) => {
+        setSelectedOption(option);
+      };
 
   const copyToClipboard = (text, index) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -49,7 +90,7 @@ const ChatWindow = () => {
         <div className="messages">
           {messages.map((msg, index) => (
             <div key={index} className={`message ${msg.user}`}>
-              {msg.text}
+              {typeof msg.text === 'string' ? msg.text : JSON.stringify(msg.text)}
               <button onClick={() => copyToClipboard(msg.text, index)} className="copy-button">
                 {clickedIndex === index ? <FontAwesomeIcon icon={faCheckCircle} /> : <FontAwesomeIcon icon={faCopy} />}
               </button>

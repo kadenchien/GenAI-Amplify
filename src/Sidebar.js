@@ -4,7 +4,7 @@ import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
-const Sidebar = () => {
+const Sidebar = ({ signOut }) => {
   const [collapsed, setCollapsed] = useState(false); // State to manage sidebar collapse
 
   const toggleSidebar = () => {
@@ -26,6 +26,13 @@ const Sidebar = () => {
           </ul>
         </div>
       )}
+        {/* Sign Out Button */}
+        <button
+            className="sign-out-button"
+            onClick={signOut}
+        >
+            Sign Out
+        </button>
     </div>
   );
 };

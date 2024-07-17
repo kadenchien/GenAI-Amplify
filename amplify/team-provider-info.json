@@ -14,6 +14,15 @@
     "categories": {
       "auth": {
         "genaifrontendebb1f55e": {}
+      },
+      "function": {
+        "genaifrontendffd25750": {
+          "deploymentBucketName": "amplify-genaifrontend-dev-e61f1-deployment",
+          "s3Key": "amplify-builds/genaifrontendffd25750-647a696a776e417a7141-build.zip"
+        }
+      },
+      "api": {
+        "mistralapi": {}
       }
     }
   }
