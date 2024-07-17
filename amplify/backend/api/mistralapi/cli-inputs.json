@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/mistral-router": {
+      "name": "/mistral-router",
+      "lambdaFunction": "genaifrontendffd25750",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
