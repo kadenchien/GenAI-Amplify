@@ -67,10 +67,12 @@ const ChatWindow = () => {
             apiName: 'mistralapi',
             path: getRouterPath(selectedOption),
             options: {
-              body: { "prompt": input },
+              body: { 
+                "prompt": input,
+                "x-user-email": userEmail,
+               },
               headers: {
                 'Content-Type': 'application/json',
-                'x-user-email': userEmail,
               }
             }
           });
