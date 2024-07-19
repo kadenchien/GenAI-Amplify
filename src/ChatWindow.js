@@ -52,9 +52,17 @@ const ChatWindow = () => {
         }
       }
 
-      console.log('Processed botResponse:', botResponseText["body"]);
+      // Manually strip out the {"body": " prefix and the "} suffix
+        let cleanedResponse = botResponseText;
 
-      setMessages(prevMessages => [...prevMessages, { text: botResponseText, user: 'bot' }]);
+        // Ensure the text is correctly formatted
+        if (cleanedResponse.startsWith('{"body": "') && cleanedResponse.endsWith('"}')) {
+            cleanedResponse = cleanedResponse.substring(10, cleanedResponse.length - 2);
+        }
+
+      console.log('Processed botResponse:', cleanedResponse);
+
+      setMessages(prevMessages => [...prevMessages, { text: cleanedResponse, user: 'bot' }]);
     } catch (error) {
       console.error('Error sending message:', error);
       console.error('Error details:', JSON.stringify(error, null, 2));
