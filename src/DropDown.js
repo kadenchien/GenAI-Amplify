@@ -22,7 +22,6 @@ const DropDown = ({ options, onSelect }) => {
         <ul className="dropdown-list">
            {options.map((option, index) => {
                 const imgSrc = `/images/${index + 1}.png`;
-                console.log(imgSrc); // Log the image path
                 return (
                 <li key={index} onClick={() => handleSelect(option)}>
                     <img src={imgSrc} className="dropdown-image"/>

@@ -25,10 +25,8 @@ const ChatWindow = () => {
     const fetchUserEmail = async () => {
         try {
           const user = await getCurrentUser();
-          console.log('User:', user);
   
           const attributes = await fetchUserAttributes();
-          console.log('User attributes:', attributes);
   
           if (attributes.email) {
             setUserEmail(attributes.email);
@@ -45,17 +43,29 @@ const ChatWindow = () => {
       fetchUserEmail();
   }, []);
 
+  function getRouterPath(selectedOption) {
+    const routerMap = {
+      'Titan': '/titan-router',
+      'mistral': '/mistral-router',
+      'Cohere': '/cohere-router',
+      'Stability': '/stability-router',
+      'Claude': '/claude-router',
+      'LLaMA-3': '/llama3-router'
+    };
+  
+    return routerMap[selectedOption] || '/default-router';
+  }
+
   const handleSend = async () => {
     if (input.trim()) {
         const newMessage = { text: input, user: 'me' };
         setMessages([...messages, newMessage]);
         setInput('');
         setIsLoading(true);
-    
         try {
           const response = await post({
             apiName: 'mistralapi',
-            path: '/mistral-router',
+            path: getRouterPath(selectedOption),
             options: {
               body: { "prompt": input },
               headers: {
@@ -64,11 +74,6 @@ const ChatWindow = () => {
               }
             }
           });
-        
-          console.log('User Email', userEmail);
-
-
-        console.log('Raw response:', response);
 
         const res = await response.response;
 
