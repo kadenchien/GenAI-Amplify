@@ -56,8 +56,8 @@ const ChatWindow = () => {
         let cleanedResponse = botResponseText;
 
         // Ensure the text is correctly formatted
-        if (cleanedResponse.startsWith('{"body": "') && cleanedResponse.endsWith('"}')) {
-            cleanedResponse = cleanedResponse.substring(10, cleanedResponse.length - 2);
+        if (cleanedResponse.startsWith('{"body": "\n\n') && cleanedResponse.endsWith('"}')) {
+            cleanedResponse = cleanedResponse.substring(14, cleanedResponse.length - 2);
         }
 
       console.log('Processed botResponse:', cleanedResponse);
