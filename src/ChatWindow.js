@@ -43,20 +43,16 @@ const ChatWindow = () => {
 
         let botResponseText = '';
 
-        if (res.body && typeof res.body.text === 'function') {
-            try {
-              // Read the response body as text
-              botResponseText = await res.body.text();
-            } catch (e) {
-              console.error('Error reading response body:', e);
-            }
-          } else if (typeof res.body === 'string') {
-            botResponseText = res.body;
-          } else {
-            console.error('Unexpected response body format:', res.body);
-          }
+      if (res.body && typeof res.body.text === 'function') {
+        try {
+          // Read the response body as text
+          botResponseText = await res.body.text();
+        } catch (e) {
+          console.error('Error reading response body:', e);
+        }
+      }
 
-      console.log('Processed botResponse:', botResponseText);
+      console.log('Processed botResponse:', botResponseText["body"]);
 
       setMessages(prevMessages => [...prevMessages, { text: botResponseText, user: 'bot' }]);
     } catch (error) {
