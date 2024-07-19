@@ -56,10 +56,11 @@ const ChatWindow = () => {
         let cleanedResponse = botResponseText;
 
         // Ensure the text is correctly formatted
-        if (cleanedResponse.startsWith('{"body": "\n\n') && cleanedResponse.endsWith('"}')) {
-            cleanedResponse = cleanedResponse.substring(14, cleanedResponse.length - 2);
+        if (cleanedResponse.startsWith('{"body": "') && cleanedResponse.endsWith('"}')) {
+            cleanedResponse = cleanedResponse.substring(10, cleanedResponse.length - 2);
         }
 
+        cleanedResponse = cleanedResponse.replace(/\\n/g, '')
       console.log('Processed botResponse:', cleanedResponse);
 
       setMessages(prevMessages => [...prevMessages, { text: cleanedResponse, user: 'bot' }]);
