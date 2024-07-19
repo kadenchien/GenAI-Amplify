@@ -1,11 +1,12 @@
 // src/ChatWindow.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ChatWindow.css';
 import Dropdown from './DropDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { post } from 'aws-amplify/api';
+import { getCurrentUser } from 'aws-amplify/auth';
 import { Amplify } from 'aws-amplify';
 
 console.log('API Config:', Amplify.getConfig().API);
@@ -17,22 +18,36 @@ const ChatWindow = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [clickedIndex, setClickedIndex] = useState(null);
+  const [userEmail, setUserEmail] = useState('');
+
+  useEffect(() => {
+    const fetchUserEmail = async () => {
+      try {
+        const user = await getCurrentUser();
+        setUserEmail(user.signInUserSession.idToken.payload.email);
+      } catch (error) {
+        console.error('Error fetching user email:', error);
+      }
+    };
+
+    fetchUserEmail();
+  }, []);
 
   const handleSend = async () => {
     if (input.trim()) {
-        const newMessage = { text: input, user: 'me' };
-        setMessages([...messages, newMessage]);
-        setInput('');
-        setIsLoading(true);
-    
-        try {
-          const response = await post({
-            apiName: 'mistralapi',
-            path: '/mistral-router',
-            options: {
-              body: { "prompt": input }
-            }
-          });
+      const newMessage = { text: input, user: 'me' };
+      setMessages([...messages, newMessage]);
+      setInput('');
+      setIsLoading(true);
+
+      try {
+        const response = await post('mistralapi', '/mistral-router', {
+          body: { "prompt": input },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-user-email': userEmail,
+          }
+        });
 
 
         console.log('Raw response:', response);
