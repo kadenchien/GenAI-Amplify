@@ -11,7 +11,7 @@ import { Amplify } from 'aws-amplify';
 console.log('API Config:', Amplify.getConfig().API);
  
 const ChatWindow = () => {
-  const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Claude', 'LLaMA-3'];
+  const options = ['Titan', 'mistral', 'Cohere', 'Stability', 'Claude', 'LLaMA-3'];
   const [messages, setMessages] = useState([]); 
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -43,14 +43,18 @@ const ChatWindow = () => {
 
         let botResponseText = '';
 
-      if (res.body && typeof res.body.text === 'function') {
-        try {
-          // Read the response body as text
-          botResponseText = await res.body.text();
-        } catch (e) {
-          console.error('Error reading response body:', e);
-        }
-      }
+        if (res.body && typeof res.body.text === 'function') {
+            try {
+              // Read the response body as text
+              botResponseText = await res.body.text();
+            } catch (e) {
+              console.error('Error reading response body:', e);
+            }
+          } else if (typeof res.body === 'string') {
+            botResponseText = res.body;
+          } else {
+            console.error('Unexpected response body format:', res.body);
+          }
 
       console.log('Processed botResponse:', botResponseText);
 
