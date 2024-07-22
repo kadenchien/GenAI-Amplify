@@ -12,7 +12,7 @@ import { Amplify } from 'aws-amplify';
 console.log('API Config:', Amplify.getConfig().API);
  
 const ChatWindow = () => {
-  const options = ['Titan', 'mistral', 'Cohere', 'Stability', 'Claude', 'LLaMA-3'];
+  const options = ['Titan', 'Mistral', 'Cohere', 'Stability', 'Claude', 'LLaMA-3'];
   const [messages, setMessages] = useState([]); 
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
