@@ -46,7 +46,7 @@ const ChatWindow = () => {
   function getRouterPath(selectedOption) {
     const routerMap = {
       'Titan': '/titan-router',
-      'mistral': '/mistral-router',
+      'Mistral': '/mistral-router',
       'Cohere': '/cohere-router',
       'Stability': '/stability-router',
       'Claude': '/claude-router',
