@@ -14,8 +14,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
   }
   
+  .dropdown-header.locked {
+    color: lightgray; /* Change text color to light gray when locked */
+    cursor: not-allowed; /* Optionally change the cursor to indicate it's locked */
+  }
+  
+  .dropdown-header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  .dropdown-header-content img{
+    margin-right: 20px;
+  }
+
   .dropdown-list {
     margin-top: 10px;
     padding: 0;
