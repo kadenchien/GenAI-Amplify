@@ -139,10 +139,10 @@ const ChatWindow = () => {
         <div className="messages">
           {messages.map((msg, index) => (
             <div key={index} className={`message ${msg.user}`}>
-              {typeof msg.text === 'string' ? msg.text : JSON.stringify(msg.text)}
-              <button onClick={() => copyToClipboard(msg.text, index)} className="copy-button">
+                <div dangerouslySetInnerHTML={{ __html: msg.text }}></div>
+                <button onClick={() => copyToClipboard(msg.text, index)} className="copy-button">
                 {clickedIndex === index ? <FontAwesomeIcon icon={faCheckCircle} /> : <FontAwesomeIcon icon={faCopy} />}
-              </button>
+                </button>
             </div>
           ))}
         </div>
