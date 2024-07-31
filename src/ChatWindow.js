@@ -100,7 +100,7 @@ const ChatWindow = () => {
             cleanedResponse = cleanedResponse.substring(10, cleanedResponse.length - 2);
         }
 
-        cleanedResponse = cleanedResponse.replace(/\\n/g, '<br>').replace(/\\'/g, "'").replace(/\\"/g, '"');
+        cleanedResponse = cleanedResponse.replace(/\\n/g, '<br>').replace(/\\'/g, "'").replace(/\\"/g, '"').trim();
       console.log('Processed botResponse:', cleanedResponse);
 
       setMessages(prevMessages => [...prevMessages, { text: cleanedResponse, user: 'bot' }]);
